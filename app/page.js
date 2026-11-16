@@ -1,123 +1,39 @@
-'use client';
+﻿import Image from "next/image";
+import Link from "next/link";
 
-import { useState } from 'react';
-import { ArrowUpRight, BadgeCheck, BookOpen, ChevronDown, Clock3, Facebook, Menu, MonitorPlay, Play, Sparkles, Users, X, Youtube } from 'lucide-react';
+const WHATSAPP = "https://wa.me/8801620908413?text=" + encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাবের এমব্রয়ডারি ডিজাইন কোর্সে ভর্তি সম্পর্কে জানতে চাই।");
+const YOUTUBE = "https://youtube.com/@richdesignclub-pt3iw?si=p3n-fXHCJ1hGwf5z";
+const FACEBOOK = "https://www.facebook.com/share/1DFPZpsJ8m/";
+const benefits=[{icon:"◷",title:"৩০ দিনের কোর্স",desc:"প্রাথমিক থেকে উন্নত পর্যায়ে ধাপে ধাপে শেখার সুযোগ।"},{icon:"⌂",title:"অনলাইন ক্লাস",desc:"ঘরে বসেই অনলাইনে প্রশিক্ষণে অংশ নিন।"},{icon:"∞",title:"আজীবন সাপোর্ট",desc:"কোর্স শেষে প্রয়োজনীয় সহায়তা ও আপডেট।"},{icon:"✦",title:"কোর্স সার্টিফিকেট",desc:"কোর্স সম্পন্ন করার পর সার্টিফিকেট।"},{icon:"↗",title:"কাজের সুযোগ",desc:"শেখার পাশাপাশি কাজের সুযোগ সম্পর্কে জানুন।"},{icon:"＋",title:"প্রয়োজনে অতিরিক্ত ক্লাস",desc:"প্রয়োজন অনুযায়ী ক্লাস চালিয়ে যাওয়ার সুবিধা।"}];
+const onlineSteps=["অফিসিয়াল ফেসবুক পেজ অথবা হোয়াটসঅ্যাপ-এ যোগাযোগ করুন।","আপনার নাম, ঠিকানা, মোবাইল নম্বর ও প্রয়োজনীয় তথ্য দিন।","নির্ধারিত ভর্তি ফি বিকাশ, নগদ অথবা অনুমোদিত মাধ্যমে পরিশোধ করুন।","পেমেন্টের লেনদেন নম্বর ও স্ক্রিনশট পাঠান।","পেমেন্ট যাচাই শেষে আপনার ভর্তি নিশ্চিত করা হবে।","ভর্তি নিশ্চিত হলে ক্লাস, সফটওয়্যার ও প্রয়োজনীয় নির্দেশনা পাবেন।"];
+const offlineSteps=["ভর্তির জন্য সরাসরি প্রশিক্ষণ কেন্দ্রে উপস্থিত হন।","নাম, ঠিকানা, মোবাইল নম্বরসহ ভর্তি ফরম পূরণ করুন।","নির্ধারিত ভর্তি ফি সরাসরি জমা দিন।","তথ্য ও ফি যাচাইয়ের পর আপনার আসন নিশ্চিত করা হবে।","নির্ধারিত সময় অনুযায়ী ক্লাসে অংশগ্রহণ করুন।","প্রতিষ্ঠানের নিয়মকানুন ও শৃঙ্খলা মেনে চলুন।"];
+const faqs=[{q:"কোর্সের মেয়াদ কত দিন?",a:"কোর্সটি ৩০ দিনের প্রাথমিক থেকে উন্নত প্রশিক্ষণ হিসেবে সাজানো হয়েছে।"},{q:"অনলাইনে ভর্তি হতে কী করতে হবে?",a:"হোয়াটসঅ্যাপ-এ যোগাযোগ করে প্রয়োজনীয় তথ্য দিন। এরপর নির্ধারিত ফি পরিশোধ করে TrxID ও পেমেন্টের স্ক্রিনশট পাঠান। যাচাই শেষে ভর্তি নিশ্চিত করা হবে।"},{q:"অফলাইনে ভর্তি হতে কী কী লাগবে?",a:"জাতীয় পরিচয়পত্র অথবা জন্মনিবন্ধনের কপি, এক কপি পাসপোর্ট সাইজ ছবি, সচল মোবাইল নম্বর এবং নির্ধারিত ভর্তি ফি সঙ্গে আনুন।"},{q:"কোর্স শেষে কি সাপোর্ট পাওয়া যাবে?",a:"হ্যাঁ। কোর্সের সুবিধার মধ্যে আজীবন সাপোর্ট ও আপডেটের কথা উল্লেখ রয়েছে।"}];
 
-const courses = [
-  ['০১', 'ফ্ল্যাট এমব্রয়ডারি', 'Flat Design'],
-  ['০২', 'সিকুইন ডিজাইন', 'Sequin Design'],
-  ['০৩', 'আড়ি ডিজাইন', 'Aari Design'],
-  ['০৪', 'কর্ডিং ডিজাইন', 'Cording Design'],
-  ['০৫', 'চেনিল ডিজাইন', 'Chenille Design'],
-  ['০৬', 'লেজার কাটিং ডিজাইন', 'Laser Cutting'],
-  ['০৭', '২ ইন সিকুইন ডিজাইন', '2 in Sequin'],
-  ['০৮', 'বিডস বিশেষ ক্লাস', 'Beads Special'],
-  ['০৯', 'লোগো ডিজাইন', 'Logo Design'],
-];
+export default function CoursePage(){return <main className="min-h-screen overflow-hidden bg-[#fffdf8] text-[#141210]">
+<header className="sticky top-0 z-50 border-b border-[#e9e1d0] bg-[#fffdf8]/95 backdrop-blur-xl"><div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"><Link href="/" className="text-lg font-extrabold tracking-wide text-[#141210] transition hover:text-[#a66f00]" aria-label="রিচ ডিজাইন ক্লাবের মূল পাতা">রিচ ডিজাইন ক্লাব</Link><nav className="hidden items-center gap-8 text-sm text-black/65 md:flex"><a href="#course" className="transition hover:text-[#a66f00]">কোর্স</a><a href="#gallery" className="transition hover:text-[#a66f00]">কার্যক্রম</a><a href="#benefits" className="transition hover:text-[#a66f00]">সুবিধা</a><a href="#admission" className="transition hover:text-[#a66f00]">ভর্তি প্রক্রিয়া</a><a href="#faq" className="transition hover:text-[#a66f00]">সাধারণ জিজ্ঞাসা</a></nav><a href={WHATSAPP} target="_blank" rel="noreferrer" className="rounded-full bg-[#f5c542] px-4 py-2.5 text-xs font-bold text-black transition hover:bg-[#ffd25e] sm:px-5">ভর্তি সম্পর্কে জানুন ↗</a></div></header>
+<section id="course" className="relative isolate overflow-hidden"><div className="pointer-events-none absolute inset-0 -z-20 bg-[#fffdf8]"/><div className="pointer-events-none absolute -left-40 top-20 -z-10 h-[520px] w-[520px] rounded-full bg-[#f5c542]/10 blur-[140px]"/><div className="pointer-events-none absolute right-0 top-0 -z-10 h-full w-1/2 bg-[linear-gradient(135deg,transparent_0%,rgba(245,197,66,.10)_100%)]"/><div className="mx-auto grid min-h-[calc(100vh-76px)] max-w-7xl items-center gap-14 px-5 py-16 lg:grid-cols-[.92fr_1.08fr] lg:px-8 lg:py-20"><div className="relative z-10"><p className="mb-5 text-sm font-bold tracking-[.2em] text-black/45">রিচ ডিজাইন ক্লাব</p><h1 className="max-w-3xl text-5xl font-black leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">ডিজাইন শিখুন,<br/><span className="text-[#f5c542]">নিজের ভবিষ্যৎ</span><br/>গড়ে তুলুন</h1><p className="mt-7 max-w-xl text-lg leading-9 text-black/60">কম্পিউটার এমব্রয়ডারি ডিজাইনের ব্যবহারিক প্রশিক্ষণ নিন—প্রাথমিক থেকে উন্নত পর্যায় পর্যন্ত, অভিজ্ঞ প্রশিক্ষকের সরাসরি নির্দেশনায়।</p><div className="mt-9 flex flex-col gap-3 sm:flex-row"><a href={WHATSAPP} target="_blank" rel="noreferrer" className="rounded-full bg-[#f5c542] px-8 py-4 text-center text-sm font-extrabold text-black transition hover:-translate-y-0.5 hover:bg-[#ffd25e]">এখনই ভর্তি হোন ↗</a><a href="#gallery" className="rounded-full border border-black/20 px-8 py-4 text-center text-sm font-bold text-black transition hover:border-[#f5c542] hover:text-[#a66f00]">আমাদের কার্যক্রম দেখুন</a></div><div className="mt-12 grid max-w-xl grid-cols-3 divide-x divide-black/10 border-y border-black/10 py-5"><div className="pr-4"><strong className="block text-2xl font-black text-[#a66f00]">৩০ দিন</strong><span className="mt-1 block text-xs text-black/45">কোর্সের মেয়াদ</span></div><div className="px-4"><strong className="block text-2xl font-black text-[#a66f00]">দুইভাবে</strong><span className="mt-1 block text-xs text-black/45">অনলাইন ও অফলাইন</span></div><div className="pl-4"><strong className="block text-2xl font-black text-[#a66f00]">আজীবন</strong><span className="mt-1 block text-xs text-black/45">শিক্ষার্থী সহায়তা</span></div></div></div><div className="relative mx-auto w-full max-w-2xl lg:ml-auto"><div className="absolute -inset-4 translate-x-3 translate-y-3 rounded-[2rem] border border-[#f5c542]/25"/><div className="relative aspect-[3/2] overflow-hidden rounded-[2rem] border border-white/10 bg-[#141210] shadow-2xl shadow-black/50"><Image src="/images/শিক্ষার্থী-সমাবেশ.jpeg" alt="রিচ ডিজাইন ক্লাবের শিক্ষার্থী পরিবার" fill priority sizes="(min-width:1024px) 52vw, 100vw" className="object-cover object-center"/><div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/5 to-black/10"/><div className="absolute inset-x-0 bottom-0 p-7 text-white sm:p-9"><p className="text-xs font-bold tracking-[.2em] text-[#a66f00]">একসঙ্গে শেখা, একসঙ্গে এগিয়ে যাওয়া</p><h2 className="mt-3 max-w-md text-2xl font-extrabold leading-tight sm:text-3xl">দক্ষ শিক্ষার্থীর নতুন প্রজন্ম তৈরি করছি</h2></div></div></div></div></section><section className="border-y border-white/10 bg-[#171511] py-5"><div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-12 gap-y-3 px-5 text-xs font-semibold tracking-[.16em] text-white/65"><span>✦ ব্যবহারিক শিক্ষা</span><span>✦ অনলাইন ও অফলাইন</span><span>✦ আজীবন সহায়তা</span><span>✦ সনদ</span></div></section>
+<section id="gallery" className="border-y border-[#e9e1d0] bg-white py-20 lg:py-28"><div className="mx-auto max-w-7xl px-5 lg:px-8"><div className="mb-12 grid gap-5 md:grid-cols-[.65fr_1fr] md:items-end"><div><p className="text-xs font-bold tracking-[.25em] text-[#f5c542]">আমাদের কার্যক্রম</p><h2 className="mt-4 text-3xl font-extrabold sm:text-5xl">শেখার পরিবেশ,<br/>সাফল্যের গল্প</h2></div><p className="max-w-xl leading-8 text-black/55">প্রশিক্ষণ কেন্দ্র, ব্যবহারিক কম্পিউটার ক্লাস এবং আমাদের শিক্ষার্থী পরিবারের কিছু বাস্তব মুহূর্ত।</p></div><div className="grid gap-4 lg:grid-cols-[1.15fr_.85fr]"><figure className="group relative min-h-[420px] overflow-hidden rounded-[2rem] bg-black lg:min-h-[680px]"><Image src="/images/কম্পিউটার-প্রশিক্ষণ.jpeg" alt="রিচ ডিজাইন ক্লাবের কম্পিউটার প্রশিক্ষণ কক্ষে শিক্ষার্থীরা" fill sizes="(min-width:1024px) 58vw, 100vw" className="object-cover transition duration-700 group-hover:scale-[1.02]" priority/><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-7 pt-24 text-white"><span className="text-xs font-bold tracking-[.2em] text-white/60">০১</span><h3 className="mt-2 text-2xl font-bold">ব্যবহারিক কম্পিউটার প্রশিক্ষণ</h3></div></figure><div className="grid gap-4"><figure className="group relative min-h-[330px] overflow-hidden rounded-[2rem] bg-black"><Image src="/images/প্রশিক্ষণ-কেন্দ্র.jpeg" alt="রিচ ডিজাইন ক্লাব প্রশিক্ষণ কেন্দ্রের সামনে শিক্ষার্থীরা" fill sizes="(min-width:1024px) 42vw, 100vw" className="object-cover transition duration-700 group-hover:scale-[1.02]"/><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-6 pt-20 text-white"><span className="text-xs font-bold tracking-[.2em] text-white/60">০২</span><h3 className="mt-2 text-xl font-bold">আমাদের প্রশিক্ষণ কেন্দ্র</h3></div></figure><figure className="group relative min-h-[330px] overflow-hidden rounded-[2rem] bg-black"><Image src="/images/শিক্ষার্থী-সমাবেশ.jpeg" alt="রিচ ডিজাইন ক্লাবের শিক্ষার্থী সমাবেশ" fill sizes="(min-width:1024px) 42vw, 100vw" className="object-cover transition duration-700 group-hover:scale-[1.02]"/><div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-6 pt-20 text-white"><span className="text-xs font-bold tracking-[.2em] text-white/60">০৩</span><h3 className="mt-2 text-xl font-bold">আমাদের শিক্ষার্থী পরিবার</h3></div></figure></div></div></div></section><section id="benefits" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24"><div className="mx-auto mb-12 max-w-2xl text-center"><p className="text-xs font-bold tracking-[.25em] text-[#f5c542]">রিচ ডিজাইন ক্লাব কেন</p><h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">শেখার অভিজ্ঞতা হোক <span className="text-[#f5c542]">আরও সমৃদ্ধ</span></h2><p className="mt-4 leading-8 text-black/55">দক্ষতা উন্নয়ন থেকে শুরু করে কোর্স-পরবর্তী সহায়তা—শেখার পুরো যাত্রায় থাকুন আত্মবিশ্বাসী।</p></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{benefits.map(item=><article key={item.title} className="group rounded-2xl border border-[#e9e1d0] bg-white p-7 shadow-[0_14px_45px_rgba(0,0,0,0.06)] transition duration-300 hover:-translate-y-1 hover:border-[#f5c542]/50"><span className="grid h-12 w-12 place-items-center rounded-xl bg-[#f5c542]/10 text-2xl text-[#a66f00]">{item.icon}</span><h3 className="mt-6 text-lg font-bold">{item.title}</h3><p className="mt-2 text-sm leading-7 text-black/55">{item.desc}</p></article>)}</div></section>
+<section className="bg-[#f5c542] py-16 text-[#1a1306]"><div className="mx-auto grid max-w-7xl gap-8 px-5 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8"><div><p className="text-xs font-black tracking-[.25em] text-black/55">শেখার পদ্ধতি বেছে নিন</p><h2 className="mt-3 text-3xl font-black sm:text-4xl">আপনার সুবিধামতো ভর্তি হোন</h2><p className="mt-3 max-w-2xl leading-7 text-black/65">ঘরে বসে অনলাইন ক্লাস অথবা প্রশিক্ষণ কেন্দ্রে সরাসরি ক্লাস—আপনার জন্য উপযুক্ত পদ্ধতিটি বেছে নিন।</p></div><a href="#admission" className="w-fit rounded-full bg-[#1a1306] px-7 py-4 text-sm font-bold text-white transition hover:bg-[#26221c]">ভর্তি প্রক্রিয়া দেখুন ↗</a></div></section>
+<section id="admission" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24"><div className="mx-auto mb-12 max-w-2xl text-center"><p className="text-xs font-bold tracking-[.25em] text-[#f5c542]">ভর্তি প্রক্রিয়া</p><h2 className="mt-4 text-3xl font-extrabold sm:text-4xl">ভর্তি হওয়ার নিয়মাবলি</h2><p className="mt-4 leading-8 text-white/55">অনলাইন অথবা অফলাইন—দুইভাবেই ভর্তি হওয়ার সুযোগ রয়েছে।</p></div><div className="grid gap-6 lg:grid-cols-2"><AdmissionCard online/><AdmissionCard/></div></section>
+<section id="faq" className="border-y border-black/10 bg-[#fbf8f1] py-20"><div className="mx-auto max-w-4xl px-5 lg:px-8"><div className="mb-10 text-center"><p className="text-xs font-bold tracking-[.25em] text-[#f5c542]">কোনো প্রশ্ন আছে?</p><h2 className="mt-4 text-3xl font-extrabold">সাধারণ জিজ্ঞাসা</h2></div><div className="space-y-3">{faqs.map(faq=><details key={faq.q} className="group rounded-2xl border border-[#e9e1d0] bg-white p-5 shadow-sm open:border-[#f5c542]/40"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-bold"><span>{faq.q}</span><span className="text-xl text-[#f5c542] transition group-open:rotate-45">＋</span></summary><p className="mt-4 max-w-3xl text-sm leading-7 text-black/60">{faq.a}</p></details>)}</div></div></section>
+<section className="px-5 py-20"><div className="mx-auto max-w-5xl rounded-[2rem] border border-[#f5c542]/30 bg-gradient-to-br from-[#26221c] to-[#171511] px-7 py-14 text-center text-white sm:px-12"><p className="text-xs font-bold tracking-[.25em] text-[#f5c542]">আপনার নতুন অধ্যায় শুরু হোক এখানেই</p><h2 className="mt-5 text-3xl font-black sm:text-5xl">আপনার দক্ষতা, <span className="text-[#f5c542]">আপনার ভবিষ্যৎ!</span></h2><p className="mx-auto mt-5 max-w-2xl leading-8 text-white/60">আজই রিচ ডিজাইন ক্লাবের সঙ্গে যোগাযোগ করুন এবং কম্পিউটার এমব্রয়ডারি ডিজাইন শেখার যাত্রা শুরু করুন।</p><a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-8 inline-flex rounded-full bg-[#f5c542] px-8 py-4 text-sm font-extrabold text-black transition hover:bg-[#ffd25e]">রিচ ডিজাইন ক্লাবে যোগ দিন ↗</a></div></section>
+<footer className="border-t border-black/10 bg-[#14100a] text-white"><div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 text-center sm:grid-cols-2 sm:text-left lg:grid-cols-[1fr_auto_auto] lg:items-center lg:px-8"><div><p className="font-extrabold tracking-[.12em]">রিচ ডিজাইন ক্লাব</p><p className="mt-1 text-xs tracking-widest text-white/40">শিখুন · ডিজাইন করুন · আয় করুন</p></div><div className="flex flex-wrap justify-center gap-3 sm:justify-start lg:justify-center"><a href={FACEBOOK} target="_blank" rel="noreferrer" className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-bold transition hover:border-[#f5c542] hover:text-[#f5c542]" aria-label="রিচ ডিজাইন ক্লাবের ফেসবুক পেজ খুলুন">ফেসবুক ↗</a><a href={YOUTUBE} target="_blank" rel="noreferrer" className="rounded-full border border-white/15 px-5 py-2.5 text-sm font-bold transition hover:border-[#f5c542] hover:text-[#f5c542]" aria-label="রিচ ডিজাইন ক্লাবের ইউটিউব চ্যানেল খুলুন">ইউটিউব ↗</a><a href={WHATSAPP} target="_blank" rel="noreferrer" className="rounded-full bg-[#f5c542] px-5 py-2.5 text-sm font-bold text-[#1a1306] transition hover:bg-[#ffd25e]">হোয়াটসঅ্যাপ ↗</a></div><p className="text-xs text-white/40 sm:col-span-2 lg:col-span-1 lg:text-right">© ২০২৬ রিচ ডিজাইন ক্লাব।<br className="hidden lg:block"/> সর্বস্বত্ব সংরক্ষিত।</p></div></footer>
+</main>}
 
-const onlineSteps = [
-  ['যোগাযোগ করুন', 'অফিসিয়াল ফেসবুক পেজ অথবা WhatsApp-এ যোগাযোগ করুন।'],
-  ['তথ্য প্রদান', 'নাম, ঠিকানা, মোবাইল নম্বর ও প্রয়োজনীয় তথ্য দিন।'],
-  ['ভর্তি ফি জমা', 'নির্ধারিত ফি বিকাশ/নগদ অথবা নির্ধারিত মাধ্যমে পরিশোধ করুন।'],
-  ['পেমেন্ট নিশ্চিত করুন', 'Transaction ID (TrxID) ও পেমেন্টের স্ক্রিনশট পাঠান।'],
-  ['ভর্তি নিশ্চিত', 'পেমেন্ট যাচাই শেষে আপনার ভর্তি নিশ্চিত করা হবে।'],
-  ['ক্লাস শুরু', 'ক্লাসের নিয়ম, সফটওয়্যার ও প্রয়োজনীয় নির্দেশনা দেওয়া হবে।'],
-];
+function AdmissionCard({online=false}){const list=online?onlineSteps:offlineSteps;return <article className={online?"rounded-3xl border border-[#f5c542]/35 bg-gradient-to-b from-[#2b2208] to-[#171511] p-7 text-white sm:p-9":"rounded-3xl border border-black/10 bg-[#171511] p-7 text-white sm:p-9"}><div className="flex items-center justify-between"><span className={online?"rounded-full bg-[#f5c542]/15 px-4 py-2 text-xs font-bold tracking-widest text-[#a66f00]":"rounded-full bg-white/10 px-4 py-2 text-xs font-bold tracking-widest text-white/75"}>{online?'অনলাইন':'অফলাইন'}</span><span className="text-3xl text-[#a66f00]">{online?'⌂':'⌖'}</span></div><h3 className="mt-6 text-2xl font-extrabold">{online?'অনলাইনে ভর্তি':'অফলাইনে ভর্তি'}</h3><p className="mt-2 text-sm leading-7 text-white/55">{online?'ঘরে বসেই যোগাযোগ, তথ্য প্রদান ও পেমেন্টের মাধ্যমে ভর্তি সম্পন্ন করুন।':'প্রশিক্ষণ কেন্দ্রে সরাসরি এসে ভর্তি ফরম পূরণ ও ফি জমা দিন।'}</p><ol className="mt-7 space-y-4">{list.map((step,i)=><li key={step} className="flex gap-4 text-sm leading-7 text-white/75"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full border border-[#f5c542]/40 text-xs font-bold text-[#a66f00]">{i+1}</span><span>{step}</span></li>)}</ol>{!online&&<><div className="mt-8 rounded-2xl border border-white/10 bg-black/20 p-5"><h4 className="font-bold text-[#a66f00]">ভর্তির সময় সঙ্গে আনুন</h4><ul className="mt-3 space-y-2 text-sm leading-6 text-white/65"><li>• জাতীয় পরিচয়পত্র অথবা জন্মনিবন্ধনের কপি</li><li>• ১ কপি পাসপোর্ট সাইজ ছবি</li><li>• সচল মোবাইল নম্বর</li><li>• নির্ধারিত ভর্তি ফি</li></ul></div><p className="mt-5 text-xs leading-6 text-white/45">বিশেষ নির্দেশনা: ভর্তি হওয়ার আগে কোর্স, ক্লাসের সময়, থাকা-খাওয়ার সুবিধা ও অন্যান্য বিষয় জেনে নিন।</p></>}<a href={WHATSAPP} target="_blank" rel="noreferrer" className={online?"mt-8 block rounded-full bg-[#f5c542] px-6 py-4 text-center text-sm font-extrabold text-black transition hover:bg-[#ffd25e]":"mt-6 block rounded-full border border-[#f5c542]/50 px-6 py-4 text-center text-sm font-bold text-[#a66f00] transition hover:bg-[#f5c542] hover:text-black"}>{online?'হোয়াটসঅ্যাপ-এ অনলাইন ভর্তি শুরু করুন ↗':'অফলাইন ভর্তি সম্পর্কে জানুন ↗'}</a></article>}
 
-const offlineSteps = [
-  ['সরাসরি উপস্থিতি', 'ভর্তি হতে প্রশিক্ষণ কেন্দ্রে সরাসরি আসতে হবে।'],
-  ['ভর্তি ফরম', 'নিজের প্রয়োজনীয় তথ্য দিয়ে ভর্তি ফরম পূরণ করুন।'],
-  ['ভর্তি ফি জমা', 'নির্ধারিত ভর্তি ফি সরাসরি জমা দিন।'],
-  ['আসন নিশ্চিতকরণ', 'ফি ও তথ্য যাচাইয়ের পর আসন নিশ্চিত করা হবে।'],
-  ['ক্লাসে অংশগ্রহণ', 'নির্ধারিত সময় অনুযায়ী ক্লাসে অংশ নিন।'],
-  ['নিয়ম মেনে চলুন', 'প্রতিষ্ঠানের নিয়মকানুন ও শৃঙ্খলা মেনে চলুন।'],
-];
 
-function Logo() {
-  return <a className="logo" href="#home" aria-label="Rich Design Club হোম"><span>R</span><b>RICH DESIGN<br/><em>CLUB™</em></b></a>;
-}
 
-function Steps({ items }) {
-  return <div className="steps">{items.map(([title, text], i) => <article className="step" key={title}><span>{String(i + 1).padStart(2, '0')}</span><div><h4>{title}</h4><p>{text}</p></div></article>)}</div>;
-}
 
-export default function Home() {
-  const [menu, setMenu] = useState(false);
-  const [mode, setMode] = useState('online');
 
-  return <main>
-    <header className="nav-wrap">
-      <nav className="nav container">
-        <Logo />
-        <div className={`nav-links ${menu ? 'open' : ''}`}>
-          <a href="#courses" onClick={() => setMenu(false)}>কোর্স</a>
-          <a href="#benefits" onClick={() => setMenu(false)}>সুবিধা</a>
-          <a href="#admission" onClick={() => setMenu(false)}>ভর্তির নিয়ম</a>
-          <a href="#contact" onClick={() => setMenu(false)}>যোগাযোগ</a>
-          <a className="nav-cta" href="#admission" onClick={() => setMenu(false)}>ভর্তি হোন <ArrowUpRight size={17}/></a>
-        </div>
-        <button className="menu-btn" aria-label="মেনু" onClick={() => setMenu(!menu)}>{menu ? <X/> : <Menu/>}</button>
-      </nav>
-    </header>
 
-    <section className="hero" id="home">
-      <div className="orb orb-one"/><div className="orb orb-two"/>
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          <div className="eyebrow"><Sparkles size={15}/> ডিজাইন শিখুন, ক্যারিয়ার গড়ুন</div>
-          <h1>আপনার সৃজনশীলতাকে<br/><span>দক্ষতায় রূপ দিন</span></h1>
-          <p>প্রফেশনাল এমব্রয়ডারি ডিজাইনের বেসিক থেকে অ্যাডভান্স—হাতে-কলমে শিখুন অভিজ্ঞ গাইডলাইনে।</p>
-          <div className="hero-actions">
-            <a className="btn primary" href="#admission">আজই ভর্তি হোন <ArrowUpRight size={19}/></a>
-            <a className="btn ghost" href="https://youtube.com/@richdesignclub-pt3iw?si=p3n-fXHCJ1hGwf5z" target="_blank" rel="noreferrer"><Play size={18} fill="currentColor"/> ভিডিও দেখুন</a>
-          </div>
-          <div className="mini-proof"><div className="avatars"><i>RD</i><i>✦</i><i>DC</i></div><p><b>৩০ দিনের</b><br/>Basic to Advance কোর্স</p></div>
-        </div>
-        <div className="hero-art" aria-label="এমব্রয়ডারি ডিজাইন শেখার প্রতীকী চিত্র">
-          <div className="stitch-card main-card"><div className="hoop"><div className="flower"><i/><i/><i/><i/><i/><b/></div></div><span>CREATE<br/><b>WITH PURPOSE</b></span></div>
-          <div className="float-card top"><BadgeCheck/><div><b>সার্টিফিকেট</b><small>কোর্স শেষে</small></div></div>
-          <div className="float-card bottom"><Users/><div><b>আজীবন সাপোর্ট</b><small>সবসময় আপনার পাশে</small></div></div>
-          <div className="thread-line"/>
-        </div>
-      </div>
-      <div className="marquee"><div>FLAT DESIGN <b>✦</b> SEQUIN <b>✦</b> AARI <b>✦</b> CORDING <b>✦</b> CHENILLE <b>✦</b> LASER CUTTING <b>✦</b> BEADS DESIGN</div></div>
-    </section>
 
-    <section className="section courses" id="courses">
-      <div className="container">
-        <div className="section-head"><div><span className="kicker">আমাদের পাঠ্যক্রম</span><h2>যা যা শেখানো হয়</h2></div><p>ইন্ডাস্ট্রির চাহিদা অনুযায়ী আধুনিক ও প্রফেশনাল এমব্রয়ডারি ডিজাইন তৈরির পূর্ণাঙ্গ প্রশিক্ষণ।</p></div>
-        <div className="course-grid">{courses.map(([no, title, en]) => <article className="course-card" key={no}><span>{no}</span><div className="course-icon">✦</div><h3>{title}</h3><p>{en}</p><ArrowUpRight className="corner"/></article>)}</div>
-      </div>
-    </section>
 
-    <section className="section benefits" id="benefits">
-      <div className="container benefit-grid">
-        <div className="benefit-intro"><span className="kicker light">কেন আমাদের সাথে শিখবেন</span><h2>শুধু কোর্স নয়,<br/>ক্যারিয়ারের প্রস্তুতি</h2><p>শেখার প্রতিটি ধাপে প্রয়োজনীয় দিকনির্দেশনা—যাতে আপনি আত্মবিশ্বাসের সাথে নিজের কাজ শুরু করতে পারেন।</p><a href="#admission">ভর্তির নিয়ম দেখুন <ArrowUpRight size={18}/></a></div>
-        <div className="benefit-list">
-          {[[Clock3,'৩০ দিনের কোর্স','Basic থেকে Advance পর্যন্ত সাজানো পাঠক্রম'],[MonitorPlay,'অনলাইন ক্লাস','ঘরে বসে নিয়মিত শেখার সুবিধা'],[Users,'আজীবন সাপোর্ট','কোর্স শেষেও প্রয়োজনীয় আপডেট ও সহায়তা'],[BadgeCheck,'সার্টিফিকেট','সফলভাবে কোর্স শেষে স্বীকৃতির সনদ'],[BookOpen,'কাজের সুযোগ','শেখার পাশাপাশি কাজের প্রস্তুতি ও সুযোগ']].map(([Icon,t,d],i)=><article key={t}><span><Icon/></span><div><small>০{i+1}</small><h3>{t}</h3><p>{d}</p></div></article>)}
-        </div>
-      </div>
-    </section>
 
-    <section className="section admission" id="admission">
-      <div className="container">
-        <div className="section-head center"><div><span className="kicker">ভর্তি প্রক্রিয়া</span><h2>শেখার যাত্রা শুরু করুন</h2></div><p>আপনার সুবিধামতো অনলাইন অথবা অফলাইন পদ্ধতি বেছে নিন।</p></div>
-        <div className="tabs" role="tablist"><button className={mode === 'online' ? 'active' : ''} onClick={() => setMode('online')}>অনলাইনে ভর্তি</button><button className={mode === 'offline' ? 'active' : ''} onClick={() => setMode('offline')}>অফলাইনে ভর্তি</button></div>
-        <div className="admission-panel">
-          <div className="admission-title"><span>{mode === 'online' ? 'ONLINE' : 'OFFLINE'}</span><h3>{mode === 'online' ? 'অনলাইনে ভর্তি হওয়ার নিয়মাবলি' : 'অফলাইনে ভর্তি হওয়ার নিয়মাবলি'}</h3><p>আসসালামু আলাইকুম। আমাদের {mode === 'online' ? 'অনলাইন' : 'অফলাইন'} কোর্সে ভর্তি হতে নিচের নিয়মগুলো অনুসরণ করুন।</p></div>
-          <Steps items={mode === 'online' ? onlineSteps : offlineSteps}/>
-        </div>
-        {mode === 'offline' && <div className="bring"><b>ভর্তির সময় সঙ্গে আনুন</b><span>জাতীয় পরিচয়পত্র/জন্মনিবন্ধনের কপি</span><span>১ কপি পাসপোর্ট সাইজ ছবি</span><span>সচল মোবাইল নম্বর</span><span>নির্ধারিত ভর্তি ফি</span></div>}
-      </div>
-    </section>
 
-    <section className="social-section" id="contact">
-      <div className="container social-card">
-        <div><span className="kicker light">এখনই যোগাযোগ করুন</span><h2>আপনার দক্ষতা,<br/><em>আপনার ভবিষ্যৎ।</em></h2><p>কোর্স, ক্লাসের সময় ও ভর্তি সম্পর্কে বিস্তারিত জানতে আমাদের অফিসিয়াল চ্যানেলে যোগাযোগ করুন।</p></div>
-        <div className="social-actions"><a href="https://www.facebook.com/share/1DFPZpsJ8m/" target="_blank" rel="noreferrer"><Facebook/><span><small>মেসেজ করুন</small>Facebook</span><ArrowUpRight/></a><a href="https://youtube.com/@richdesignclub-pt3iw?si=p3n-fXHCJ1hGwf5z" target="_blank" rel="noreferrer"><Youtube/><span><small>ভিডিও দেখুন</small>YouTube</span><ArrowUpRight/></a></div>
-      </div>
-    </section>
 
-    <footer><div className="container footer-grid"><Logo/><p>Learn <b>•</b> Design <b>•</b> Earn</p><div><a href="https://www.facebook.com/share/1DFPZpsJ8m/" target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook/></a><a href="https://youtube.com/@richdesignclub-pt3iw?si=p3n-fXHCJ1hGwf5z" target="_blank" rel="noreferrer" aria-label="YouTube"><Youtube/></a></div></div><div className="container copyright">© ২০২৬ RICH DESIGN CLUB™ — সর্বস্বত্ব সংরক্ষিত।</div></footer>
-  </main>;
-}
+
+
+
+
+
