@@ -1,3 +1,19 @@
 ﻿@import "tailwindcss";
 @theme { --font-sans: var(--font-bn), sans-serif; --font-display: var(--font-display), var(--font-bn), sans-serif; }
-*{box-sizing:border-box} html,body{margin:0;background:#050a09;font-family:var(--font-bn),sans-serif} ::selection{background:#f6c542;color:#050a09} a{text-decoration:none} button,a{-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box} html,body{margin:0;max-width:100%;overflow-x:hidden;background:#050a09;font-family:var(--font-bn),sans-serif} main{overflow-x:hidden} ::selection{background:#f6c542;color:#050a09} a{text-decoration:none} button,a{-webkit-tap-highlight-color:transparent}
+@media(max-width:639px){
+  main>section:first-of-type{min-height:auto!important}
+  main>section:first-of-type h1{font-size:2.25rem!important;line-height:1.12!important;overflow-wrap:anywhere}
+  main>section:first-of-type p{font-size:1rem}
+  main>section:first-of-type>div.max-w-6xl{padding-top:2.5rem;padding-bottom:2.5rem}
+  main>section:first-of-type img{object-position:70% center}
+  main>section:first-of-type a{width:100%;text-align:center;justify-content:center}
+  #course{padding-top:3rem;padding-bottom:3rem}
+  #course h2{font-size:1.75rem;line-height:1.25}
+  #course aside{width:100%;max-width:22rem;margin-inline:auto}
+  #benefits h2{padding-inline:1.25rem;font-size:1.75rem}
+  #story{padding-top:4rem;padding-bottom:4rem}
+  #story>div:first-child{min-height:380px}
+  .min-w-44{left:1rem!important;transform:translateY(-50%)!important;min-width:9.5rem}
+  .pl-8{padding-left:0!important}
+}
