@@ -1,0 +1,22 @@
+const icons={
+play:<><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4Z"/></>,
+calendar:<><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></>,
+infinity:<path d="M18.5 15.5c-2.5 0-4.1-2-6.5-5-2.4 3-4 5-6.5 5a3.5 3.5 0 1 1 0-7c2.5 0 4.1 2 6.5 5 2.4-3 4-5 6.5-5a3.5 3.5 0 1 1 0 7Z"/>,
+certificate:<><path d="M5 3h14v13H5z"/><path d="M8 7h8M8 11h5M10 16l-1 5 3-2 3 2-1-5"/></>,
+monitor:<><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></>,
+book:<><path d="M3 5c4-1 7 0 9 2v14c-2-2-5-3-9-2V5Z"/><path d="M21 5c-4-1-7 0-9 2v14c2-2 5-3 9-2V5Z"/></>,
+accessibility:<><circle cx="12" cy="4" r="2"/><path d="M6 8h12M12 6v7l-3 8M12 13l5 7"/></>,
+handshake:<><path d="m8 11 3-3 4 4 2-2 4 4-6 6-4-4-2 2-6-6 4-4 3 3"/><path d="m14 17 2 2M11 16l2 2"/></>,
+building:<><path d="M4 21V8l8-5 8 5v13M8 21v-4h8v4M8 10h1M12 10h1M16 10h1M8 14h1M12 14h1M16 14h1"/></>,
+graduation:<><path d="m2 9 10-5 10 5-10 5L2 9Z"/><path d="M6 11v5c3 3 9 3 12 0v-5M22 9v6"/></>,
+users:<><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2-7 6-7s6 3 6 7M15 14c4 0 6 2 6 6"/></>,
+refresh:<><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6 8a7 7 0 0 1 12-2l2 6M18 16a7 7 0 0 1-12 2l-2-6"/></>,
+briefcase:<><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3M3 12h18M10 12v2h4v-2"/></>,
+pin:<><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></>,
+clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/></>,
+message:<><path d="M21 12a8 8 0 0 1-9 8 9 9 0 0 1-4-1l-5 2 2-5a9 9 0 1 1 16-4Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></>,
+target:<><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></>,
+sparkle:<path d="m12 2 2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2L12 2Z"/>,
+check:<path d="m5 12 4 4L19 6"/>,
+};
+export default function Icon({name,className=""}){return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">{icons[name]||icons.sparkle}</svg>}
