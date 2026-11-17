@@ -1,3 +1,3 @@
 ﻿@import "tailwindcss";
 @theme { --font-sans: var(--font-bn), sans-serif; --font-display: var(--font-display), var(--font-bn), sans-serif; }
-*{box-sizing:border-box} body{margin:0;font-family:var(--font-bn),sans-serif} ::selection{background:#a3e635;color:#09090b} a{text-decoration:none} button,a{-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box} html,body{margin:0;background:#050a09;font-family:var(--font-bn),sans-serif} ::selection{background:#f6c542;color:#050a09} a{text-decoration:none} button,a{-webkit-tap-highlight-color:transparent}
