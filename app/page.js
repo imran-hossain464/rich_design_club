@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SiteHeader from "./components/SiteHeader";
 import Icon from "./components/Icon";
+import SiteFooter from "./components/SiteFooter";
 const WA="https://wa.me/8801617031645";
 const perks=["৩০ দিন — বেসিক থেকে অ্যাডভান্স","আজীবন সাপোর্ট ও আপডেট","কোর্স শেষে সার্টিফিকেট","অনলাইন ও অফলাইন ক্লাস"];
 const perkIcons=["calendar","infinity","certificate","monitor"];
@@ -16,5 +17,5 @@ export default function Home(){return <main className="home-page min-h-screen bg
 <section id="benefits" className="border-b border-[#d6a936]/60 py-9"><h2 className="text-center font-display text-3xl font-extrabold">কেন রিচ ডিজাইন ক্লাব?</h2><div className="mx-auto mt-8 grid max-w-6xl grid-cols-2 gap-y-8 px-5 sm:grid-cols-3 lg:grid-cols-6">{benefits.map((x,i)=><div key={x} className="border-l border-[#d6a936]/30 px-4 text-center"><Icon name={benefitIcons[i]} className="mx-auto h-10 w-10 text-[#f6c542]"/><p className="mt-3 text-sm">{x}</p></div>)}</div></section>
 <section className="p-5"><div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-3xl border-2 border-[#d6a936] bg-gradient-to-r from-[#560719] via-[#b00835] to-[#560719] px-8 py-5 sm:flex-row"><div><h2 className="font-display text-2xl font-extrabold">আজই শুরু করুন আপনার এমব্রয়ডারি ডিজাইনের যাত্রা!</h2><p className="text-white/65">শিখুন • ডিজাইন করুন • আয় করুন | RICH DESIGN CLUB™</p></div><a href={WA} className="rounded-xl bg-[#ffd260] px-7 py-3 font-bold text-black">ভর্তি হোন →</a></div></section>
 <section className="border-y border-[#d6a936]/60 py-7"><div className="mx-auto grid max-w-6xl grid-cols-2 px-5 sm:grid-cols-4">{[["৫০K+","ফেসবুক পরিবার"],["৬+","বছরের অভিজ্ঞতা"],["১০০০+","প্রশিক্ষিত শিক্ষার্থী"],["৫০০০+","আমাদের শপে ডিজাইন"]].map(([a,b])=><div key={a} className="border-l border-[#d6a936]/30 p-4 text-center"><b className="text-2xl">{a}</b><p className="text-xs text-white/60">{b}</p></div>)}</div></section>
-<section id="contact" className="mx-auto grid max-w-6xl gap-5 px-5 py-10 md:grid-cols-3">{["computer-training.jpeg","training-center.jpeg","student-gathering.jpeg"].map(x=><div key={x} className="relative h-60 overflow-hidden rounded-2xl border border-[#d6a936]/40"><Image src={"/images/"+x} alt="রিচ ডিজাইন ক্লাব" fill className="object-cover"/></div>)}</section><footer className="border-t border-[#d6a936]/50 py-7 text-center text-sm text-white/45">© ২০২৬ রিচ ডিজাইন ক্লাব। সর্বস্বত্ব সংরক্ষিত।</footer>
+<section id="contact" className="mx-auto grid max-w-6xl gap-5 px-5 py-10 md:grid-cols-3">{["computer-training.jpeg","training-center.jpeg","student-gathering.jpeg"].map(x=><div key={x} className="relative h-60 overflow-hidden rounded-2xl border border-[#d6a936]/40"><Image src={"/images/"+x} alt="রিচ ডিজাইন ক্লাব" fill className="object-cover"/></div>)}</section><SiteFooter/>
 </main>}

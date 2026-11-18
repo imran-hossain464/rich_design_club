@@ -1,0 +1,10 @@
+const socialLinks=[
+  {name:'YouTube',href:'https://www.youtube.com/@richdesignclub-pt3iw',className:'bg-[#ff0033] hover:bg-[#e6002e]',icon:<path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.4V8.6l6 3.4-6 3.4Z"/>},
+  {name:'Facebook',href:'https://www.facebook.com/p/Rich-Design-Club-International-Embroidery-61562277431198/',className:'bg-[#1877f2] hover:bg-[#0f68dc]',icon:<path d="M13.7 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5H17V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.5V13h2.8v8h3.4Z"/>},
+  {name:'Instagram',href:'https://www.instagram.com/rich_design_club_embroidery/',className:'bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:brightness-110',icon:<><rect x="5" y="5" width="14" height="14" rx="4" fill="none"/><circle cx="12" cy="12" r="3.2" fill="none"/><circle cx="16.7" cy="7.4" r=".8" fill="currentColor" stroke="none"/></>}
+];
+
+export default function SocialLinks({className='',size='md',showLabels=false}){
+  const dimensions=size==='sm'?'h-8 w-8':'h-10 w-10';
+  return <div className={`flex items-center gap-2 ${className}`} aria-label="Social media links">{socialLinks.map(x=><a key={x.name} href={x.href} target="_blank" rel="noreferrer" aria-label={x.name} title={x.name} className={`inline-flex items-center justify-center rounded-full text-white shadow-lg transition hover:-translate-y-0.5 ${dimensions} ${x.className}`}><svg viewBox="0 0 24 24" className={size==='sm'?'h-4 w-4':'h-5 w-5'} fill="currentColor" stroke={x.name==='Instagram'?'currentColor':'none'} strokeWidth="1.8" aria-hidden="true">{x.icon}</svg>{showLabels&&<span className="sr-only">{x.name}</span>}</a>)}</div>
+}
