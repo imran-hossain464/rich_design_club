@@ -1,7 +1,7 @@
 "use client";
 import {useState} from "react";
 import Icon from "./Icon";
-const WA="https://wa.me/8801620908413?text="+encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাব সম্পর্কে জানতে চাই।");
+const WA="https://wa.me/8801617031645?text="+encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাব সম্পর্কে জানতে চাই।");
 const links=[["home","হোম","/"],["course","কোর্স","/#course"],["facilities","আমাদের সুবিধা","/#benefits"],["gallery","গ্যালারি","/#contact"],["shop","ডিজাইন শপ ↗","https://richdesignclub.com"],["about","আমাদের সম্পর্কে","/about"],["contact","যোগাযোগ","/contact"]];
 function NavLink({item,active,mobile=false}){const [id,label,href]=item;return <a href={href} target={id==="shop"?"_blank":undefined} rel={id==="shop"?"noreferrer":undefined} className={active===id?(mobile?"rounded-lg bg-[#f6c542] px-4 py-3 font-bold text-black":"whitespace-nowrap bg-gradient-to-r from-[#dfa016] to-[#ffda6b] px-5 py-3 text-sm font-bold text-black"):(mobile?"rounded-lg border border-white/10 px-4 py-3 text-white/75":"whitespace-nowrap border-b-2 border-transparent px-4 py-3 text-sm font-bold text-white/70 hover:border-[#d6a936]/50 hover:text-[#f6c542]")}>{label}</a>}
 export default function SiteHeader({active="home"}){const [open,setOpen]=useState(false);return <header className="relative z-50 border-b border-[#d6a936]/60 bg-[#050a09]/95 backdrop-blur-xl">

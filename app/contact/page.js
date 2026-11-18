@@ -1,6 +1,6 @@
 import SiteHeader from "../components/SiteHeader";
 import Icon from "../components/Icon";
-const WA="https://wa.me/8801620908413?text="+encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাব সম্পর্কে জানতে চাই।");
+const WA="https://wa.me/8801617031645?text="+encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাব সম্পর্কে জানতে চাই।");
 export const metadata={title:"যোগাযোগ | রিচ ডিজাইন ক্লাব",description:"রিচ ডিজাইন ক্লাবের সঙ্গে যোগাযোগ করুন এবং কোর্সে ভর্তি সম্পর্কে জানুন।"};
 export default function Contact(){return <main className="min-h-screen bg-[#050a09] text-white"><SiteHeader active="contact"/>
 <section className="border-b border-[#d6a936]/45 bg-[radial-gradient(circle_at_80%_30%,rgba(214,169,54,.14),transparent_35%)]"><div className="mx-auto max-w-6xl px-5 py-20 text-center"><p className="font-bold tracking-[.25em] text-[#f6c542]">GET IN TOUCH</p><h1 className="mt-4 font-display text-4xl font-extrabold sm:text-6xl">আমাদের সঙ্গে <span className="text-[#f6c542]">যোগাযোগ করুন</span></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/65">কোর্স, ভর্তি, ক্লাসের সময় অথবা থাকা-খাওয়ার সুবিধা সম্পর্কে জানতে সরাসরি আমাদের সঙ্গে কথা বলুন।</p></div></section>

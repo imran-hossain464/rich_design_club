@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
 import Icon from "../components/Icon";
-const WA="https://wa.me/8801620908413?text="+encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাবের কোর্স সম্পর্কে জানতে চাই।");
+const WA="https://wa.me/8801617031645?text="+encodeURIComponent("আসসালামু আলাইকুম। রিচ ডিজাইন ক্লাবের কোর্স সম্পর্কে জানতে চাই।");
 const values=[["monitor","কাজের মাধ্যমে শেখা","প্রতিটি ক্লাসে বাস্তব ডিজাইন, সফটওয়্যার এবং প্রোডাকশন প্রক্রিয়ার অভিজ্ঞতা।"],["graduation","মানসম্মত নির্দেশনা","অভিজ্ঞ প্রশিক্ষকের পরিকল্পিত পাঠ, ব্যক্তিগত পর্যবেক্ষণ এবং প্রয়োজনীয় ফিডব্যাক।"],["refresh","দীর্ঘমেয়াদি সম্পর্ক","কোর্স শেষ হলেও সাপোর্ট, আপডেট এবং শিক্ষার্থী কমিউনিটির সঙ্গে সংযোগ।"]];
 export const metadata={title:"আমাদের সম্পর্কে | রিচ ডিজাইন ক্লাব",description:"রিচ ডিজাইন ক্লাবের গল্প, লক্ষ্য এবং কম্পিউটার এমব্রয়ডারি প্রশিক্ষণ পদ্ধতি সম্পর্কে জানুন।"};
 export default function About(){return <main className="min-h-screen overflow-hidden bg-[#050a09] text-white"><SiteHeader active="about"/>
